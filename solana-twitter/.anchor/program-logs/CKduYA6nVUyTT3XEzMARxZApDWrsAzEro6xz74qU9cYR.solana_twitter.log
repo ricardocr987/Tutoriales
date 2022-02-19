@@ -1,0 +1,21 @@
+Streaming transaction logs mentioning CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR. Confirmed commitment
+Transaction executed in slot 2576:
+  Signature: 3pE6hH5cnweewUxGTXukU5t5agcQ8RY8nBsTeM1kf57PABxfvPV5dtTQFLA4tXaWV4AWfRC5h5mM4it3bUmdM6Mg
+  Status: Ok
+  Log Messages:
+    Program CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR invoke [1]
+    Program log: Instruction: SendTweet
+    Program 11111111111111111111111111111111 invoke [2]
+    Program 11111111111111111111111111111111 success
+    Program CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR consumed 7588 of 200000 compute units
+    Program CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR success
+Transaction executed in slot 2578:
+  Signature: 2NPfSK1qoo2paGX2uF6VnEHJC7ocRAiwFeSi6dSJ49x9HRvbw5xRT6jzBbWGNW7G333fGizrT1t8rsBH9hc9sCZB
+  Status: Ok
+  Log Messages:
+    Program CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR invoke [1]
+    Program log: Instruction: SendTweet
+    Program 11111111111111111111111111111111 invoke [2]
+    Program 11111111111111111111111111111111 success
+    Program CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR consumed 7481 of 200000 compute units
+    Program CKduYA6nVUyTT3XEzMARxZApDWrsAzEro6xz74qU9cYR success

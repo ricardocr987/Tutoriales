@@ -1,0 +1,1 @@
+/Users/ricardocastelloroman/Developer/solana-twitter/target/bpfel-unknown-unknown/release/libsolana_twitter.rlib: /Users/ricardocastelloroman/Developer/solana-twitter/programs/solana-twitter/src/lib.rs
