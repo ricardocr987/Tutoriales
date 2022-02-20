@@ -1,12 +1,12 @@
 [package]
-name = "blog-anchor"
+name = "mysolanaapp"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "blog_anchor"
+name = "mysolanaapp"
 
 [features]
 no-entrypoint = []
