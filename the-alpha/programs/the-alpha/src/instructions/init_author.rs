@@ -43,7 +43,7 @@ pub fn handler(
     author.article_count = 0;
     author.bump = author_account_bump;
     author.vector_capacity = vector_capacity;
-    author.sub_pubkeys = vec![];
+    author.sub_pubkeys = Vec::new();
 
     Ok(())
 }

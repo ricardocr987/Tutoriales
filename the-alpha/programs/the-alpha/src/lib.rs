@@ -29,22 +29,24 @@ pub mod the_alpha {
             paid_or_free,
         )
     }
-/*
+
     pub fn initialize_reader(
         ctx: Context<InitializeReader>, 
-        author_account_bump: u8, 
-        vector_capacity: u16, 
+        reader_account_bump: u8, 
         name: String,
+        subscription_vector_capacity: u16,
+        timestamp_vector_capacity: u16,
         /*nft: Pubkey*/
 
     ) -> Result<()> {
         instructions::init_reader::handler(
-            ctx, 
-            author_account_bump, 
-            vector_capacity, 
-            name
+            ctx,
+            reader_account_bump, 
+            name, 
+            subscription_vector_capacity,
+            timestamp_vector_capacity,
         )
-    }*/
+    }
 
     pub fn initialize_article(
         ctx: Context<InitializeArticle>, 

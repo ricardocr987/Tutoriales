@@ -1,9 +1,9 @@
-/*use anchor_lang::prelude::*;
+use anchor_lang::prelude::*;
 
 use crate::state::*;
 
 #[derive(Accounts)]
-#[instruction(reader_account_bump: u8, vector_capacity: u16, name: String)]
+#[instruction(reader_account_bump: u8, subscription_vector_capacity: u16, timestamp_vector_capacity: u16, name: String)]
 pub struct InitializeReader<'info> {
     #[account(
         init, 
@@ -13,7 +13,7 @@ pub struct InitializeReader<'info> {
         ], 
         bump, 
         payer = user,
-        space = ReaderAccount::space(&name, vector_capacity)
+        space = ReaderAccount::space(&name, timestamp_vector_capacity, subscription_vector_capacity)
     )]
     reader_account: Account<'info, ReaderAccount>,
     
@@ -26,22 +26,21 @@ pub struct InitializeReader<'info> {
 pub fn handler(
     ctx: Context<InitializeReader>, 
     reader_account_bump: u8, 
-    vector_capacity: u16, 
     name: String,
-    //subscription_vector_capacity: u16,
-    //timestamp_vector_capacity: u16,
-    //timestamp_vector: Vec<i16>,
-
+    subscription_vector_capacity: u16,
+    timestamp_vector_capacity: u16,
     /*nft: Pubkey*/
 ) -> Result<()> {
 
     let reader = &mut ctx.accounts.reader_account;
 
     reader.authority = *ctx.accounts.user.to_account_info().key;
-    reader.name = name;
     reader.bump = reader_account_bump;
-    reader.vector_capacity = vector_capacity;
-    reader.time_sub_vector_tuple = vec![];
+    reader.name = name;
+    reader.subscription_vector_capacity = subscription_vector_capacity;
+    reader.subscription_pubkeys_vector = Vec::new();
+    reader.timestamp_vector_capacity = timestamp_vector_capacity;
+    reader.timestamp_vector = Vec::new();
 
     Ok(())
-}*/
+}

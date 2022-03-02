@@ -8,7 +8,7 @@ use crate::state::*;
 pub struct InitializeArticle<'info> {
     #[account(
         init, 
-        seeds = [ 
+        seeds = [
             b"article".as_ref(), 
             author_account.key().as_ref(),
             &[author_account.article_count as u8].as_ref()

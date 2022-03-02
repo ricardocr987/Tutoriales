@@ -38,7 +38,7 @@ describe("the-alpha", async () => {
   [articleAccount, articleAccountBump] =
     await anchor.web3.PublicKey.findProgramAddress(
       [
-        Buffer.from("article"),
+        Buffer.from(authorAccount.name + "article"),
         authorAccount.toBuffer(),
         new anchor.BN(0).toArrayLike(Buffer),
       ],
@@ -133,15 +133,17 @@ describe("the-alpha", async () => {
     const authorState = await program.account.authorAccount.fetch(authorAccount);
     assert.equal(0, authorState.articleCount);
   });
-/*
+
   it("Reader account is initialized!", async () => {
     const name = "Carlos";
-    const vector_capacity = 255;
+    const timestamp_vector_capacity = 255;
+    const subscription_vector_capacity = 255;
 
     const create_reader_tx = await program.rpc.initializeReader(
       readerAccountBump,
-      vector_capacity,
       name,
+      subscription_vector_capacity,
+      timestamp_vector_capacity,
       {
       accounts: {
         readerAccount,
@@ -154,8 +156,7 @@ describe("the-alpha", async () => {
     const readerState = await program.account.readerAccount.fetch(readerAccount);
 
     assert.equal(name, readerState.name);
-    assert.equal([], readerState.timeSubVectorTuple);
-  });*/
+  });
 
   it("Article account is initialized!", async () => {
     const paid_or_free = true; 
