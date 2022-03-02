@@ -7,10 +7,9 @@ declare_id!("C4tMfKrKkXs8HjgMBSSC9AKRmdhqHnsasH8FcMvCDMKz");
 pub mod crunchy_vs_smooth {
     use super::*;
     /// The first parameter for every RPC handler is the Context struct. We define Initialize and Vote below at #[derive(Accounts)]
-    pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
-        let vote_account = &mut ctx.accounts.vote_account;
-        vote_account.crunchy = 0;
-        vote_account.smooth = 0;
+    pub fn initialize(ctx: Context<Initialize>, vote_account_bump: u8) -> ProgramResult {
+        ctx.accounts.vote_account.bump = vote_account_bump;
+
         Ok(())
     }
     /// All account validation logic is handled below at the #[account(...)] macros, letting us just focus on the business logic
@@ -27,6 +26,7 @@ pub mod crunchy_vs_smooth {
 }
 
 #[derive(Accounts)]
+#[instruction(vote_account_bump: u8)]
 pub struct Initialize<'info> {
     /// We mark vote_account with the init attribute, which creates a new account owned by the program
     /// When using init, we must also provide:
@@ -34,7 +34,7 @@ pub struct Initialize<'info> {
     /// space, which defines how large the account should be
     /// and the system_program which is required by the runtime
     /// This enforces that our vote_account must be owned by the currently executing program, and that it should be deserialized to the VoteAccount struct below at #[account]
-    #[account(init, payer = user, space = 16 + 16)]
+    #[account(init, seeds = [b"vote_account".as_ref()], bump, payer = user)]
     pub vote_account: Account<'info, VoteAccount>,
     #[account(mut)]
     pub user: Signer<'info>,
@@ -53,7 +53,9 @@ pub struct Vote<'info> {
 /// These properties will keep track of their respective votes as unsigned 64-bit integers
 /// This VoteAccount will be passed inside each Transaction Instruction to record votes as they occur
 #[account]
+#[derive(Default)]
 pub struct VoteAccount{
+    pub bump: u8,
     pub crunchy: u64,
     pub smooth: u64,
 }
