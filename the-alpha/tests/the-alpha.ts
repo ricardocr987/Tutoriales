@@ -31,14 +31,15 @@ describe("the-alpha", async () => {
   
   [authorAccount, authorAccountBump] =
     await anchor.web3.PublicKey.findProgramAddress(
-      [Buffer.from("author"), program.provider.wallet.publicKey.toBuffer()],
+      [Buffer.from("author"), 
+      program.provider.wallet.publicKey.toBuffer()],
       program.programId
     );
 
   [articleAccount, articleAccountBump] =
     await anchor.web3.PublicKey.findProgramAddress(
       [
-        Buffer.from(authorAccount.name + "article"),
+        Buffer.from("article"),
         authorAccount.toBuffer(),
         new anchor.BN(0).toArrayLike(Buffer),
       ],
